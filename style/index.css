@@ -1,0 +1,260 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background-image: url('../image/space.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.main-buttons {
+    height: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.skirt-cards {
+    width: 10%;
+    height: 85%;
+    margin-left: 1%;
+    border: 1px solid #5edb5a;
+    border-radius: 5px;
+    background-color: #5edb5a;
+    font-size: 110%;
+    font-weight: 700;
+    color: white;
+}
+
+.game-difficult {
+    width: 10%;
+    height: 85%;
+    margin-left: 10px;
+    border: 1px solid #5edb5a;
+    border-radius: 5px;
+    background-color: #5edb5a;
+    font-size: 110%;
+    font-weight: 700;
+    color: white;
+}
+
+.new-game {
+    width: 10%;
+    height: 85%;
+    margin-left: 67%;
+    border: 1px solid #5edb5a;
+    border-radius: 5px;
+    background-color: #5edb5a;
+    font-size: 110%;
+    font-weight: 700;
+    color: white;
+}
+
+button:focus {
+    outline: none !important;
+    background-color: #58cb55;
+}
+
+.field-game {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 95%;
+    background-color: rgba(67, 195, 255, 0.5);
+}
+
+.player-choose {
+    height: 25%;
+    display: flex;
+    flex-direction: row;
+}
+
+.image-card {
+    background-color: #5edb5a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 203px;
+    margin-left: -30px;
+    border-radius: 5px;
+    z-index: 99999999;
+}
+
+.image-card > *:hover{
+    cursor: pointer;
+}
+
+.choose-difficult {
+    background-color: #5edb5a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 203px;
+    margin-left: 10px;
+    border-radius: 5px;
+    font-size: 120%;
+    color: white;
+    z-index: 99999999;
+}
+
+.choose-difficult > *:hover{
+    cursor: pointer;
+}
+
+.player-data {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    z-index: 99999999;
+}
+
+.player-data b {
+    margin: 5px 0 5px 0;
+    font-size: 120%;
+    color: black;
+}
+
+.player-data input {
+    width: 220px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 120%;
+    opacity: 0.8;
+    background-color: white;
+}
+
+.rule {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    font-size: 150%;
+    margin-top: 40px;
+}
+
+.how-to-play {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.to-play {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.how-to-play h1, .to-play h1{
+    font-size: 140%;
+}
+
+.low-game, .medium-game, .hard-game{
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+}
+
+.first-level-low{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -90px;
+    height: 50%;
+}
+
+.second-level-low{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 50%;
+
+}
+
+.card-low{
+    background-color: white;
+    width: 180px;
+    height: 250px;
+    border-radius: 10px;
+    margin: 0 40px 0 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.first-level-medium{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -200px;
+}
+
+.second-level-medium{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+
+.thrid-level-medium{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+}
+.card-medium{
+    background-color: white;
+    width: 180px;
+    height: 250px;
+    border-radius: 10px;
+    margin: 0 30px 0 30px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.first-level-hard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: -200px;
+}
+
+.second-level-hard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 30px;
+
+}
+
+.thrid-level-hard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.card-hard{
+    background-color: white;
+    width: 180px;
+    height: 250px;
+    border-radius: 10px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.win{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 350px;
+    color: #ffe4c0;
+}
