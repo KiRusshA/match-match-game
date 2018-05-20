@@ -1,38 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => start());
 
-let NEW_GAME;
-let FIELD_GAME;
-let CHOOSE_DIFFICULT;
-let PLAYER_CHOOSE;
-let IMAGE_CARD;
-let GAME_DIFFICULT;
-let PLAYER_DATA;
-let SKIRT_CARDS;
-let DIV;
-let WIN;
+let field_game;
+let choose_difficult;
+let image_card;
+let player_data;
+let playground;
 
 let arrImageBack = ['image/nba.png', 'image/minion.png', 'image/eminem.png'];
-let arrDifficult = ["low", "medium", "hard"];
-let arrImageFront = ['image/bryant.png', 'image/curry.png', 'image/durant.png', 'image/lavin.png', 'image/Lebron.jpg', 'image/leonard.png', 'image/melo.png', 'image/pol.png', 'image/wade.jpg', 'image/Ronaldo.png', 'image/ozil.png', 'image/ibra.png'];
 let imageChoose = 0;
-let difficultChoose = '';
+let difficultChoose = 'low';
 let imageChooseShow = true;
 let difficultChooseShow = true;
-let arrForPlayWithCards;
 let flagRestartGame = 0;
-let sec = 0;
-let name = "";
-let lastName = "";
-let email = "";
-let timePassed = 0;
 let records = new Array(10);
 records.fill(0);
+
 let readout = '';
 let base = 60;
 let clocktimer, dateObj, dh, dm, ds;
 let h = 1, m = 1, tm = 1, s = 0, ts = 0, ms = 0, init = 0;
 
 function start() {
+    const NEW_GAME = document.querySelector('.new-game');
     declarationVariables();
     chooseImage();
     chooseDifficult();
@@ -40,9 +29,6 @@ function start() {
     showImageCard();
     NEW_GAME.addEventListener('click', () => {
         removeSecondChildField();
-        PLAYER_DATA.style.opacity = 0;
-        IMAGE_CARD.style.opacity = 0;
-        CHOOSE_DIFFICULT.style.opacity = 0;
         imageChooseShow = false;
         difficultChooseShow = false;
         insertCards(difficultChoose);
@@ -50,115 +36,68 @@ function start() {
         flagRestartGame++;
         startStop();
     });
-
-
 }
 
 function declarationVariables() {
-    NEW_GAME = document.querySelector('.new-game');
-    FIELD_GAME = document.querySelector('.field-game');
-    CHOOSE_DIFFICULT = document.querySelector('.choose-difficult');
-    PLAYER_CHOOSE = document.querySelector('.player-choose');
-    IMAGE_CARD = document.querySelector('.image-card');
-    PLAYER_DATA = document.querySelector('.player-data');
-    GAME_DIFFICULT = document.querySelector('.game-difficult');
-    SKIRT_CARDS = document.querySelector('.skirt-cards');
+    field_game = document.querySelector('.field-game');
+    choose_difficult = document.querySelector('.choose-difficult');
+    image_card = document.querySelector('.image-card');
+    player_data = document.querySelector('.player-data');
 }
 
-function insertCards(difficult) { //Yeah, it's horrible, I know
-    DIV = document.createElement('div');
-    DIV.className = difficult + "-game";
-    if (difficult === "low") {
-        DIV.innerHTML = `
-        <div class="first-level-low">
-            <div class="card-low" id = "0"></div>
-            <div class="card-low" id = "1"></div>
-            <div class="card-low" id = "2"></div>
-            <div class="card-low" id = "3"></div>
-            <div class="card-low" id = "4"></div>
-        </div>
-        <div class="second-level-low">
-            <div class="card-low" id = "5"></div>
-            <div class="card-low" id = "6"></div>
-            <div class="card-low" id = "7"></div>
-            <div class="card-low" id = "8"></div>
-            <div class="card-low" id = "9"></div>
-        </div>`;
-        let cards = DIV.getElementsByClassName('card-low');
-        for (let i = 0; i < cards.length; i++) {
-            cards[i].style.backgroundImage = 'url(' + arrImageBack[imageChoose] + ')';
-        }
-    } else if (difficult == 'medium') {
-        DIV.innerHTML = `<div class="first-level-medium">
-            <div class="card-medium" id = "0"></div>
-            <div class="card-medium" id = "1"></div>
-            <div class="card-medium" id = "2"></div>
-            <div class="card-medium" id = "3"></div>
-            <div class="card-medium" id = "4"></div>
-            <div class="card-medium" id = "5"></div>
-        </div>
-        <div class="second-level-medium">
-            <div class="card-medium" id = "6"></div>
-            <div class="card-medium" id = "7"></div>
-            <div class="card-medium" id = "8"></div>
-            <div class="card-medium" id = "9"></div>
-            <div class="card-medium" id = "10"></div>
-            <div class="card-medium" id = "11"></div>
-        </div>
-        <div class="thrid-level-medium">
-            <div class="card-medium" id = "12"></div>
-            <div class="card-medium" id = "13"></div>
-            <div class="card-medium" id = "14"></div>
-            <div class="card-medium" id = "15"></div>
-            <div class="card-medium" id = "16"></div>
-            <div class="card-medium" id = "17"></div>
-        </div>`;
-        let cards = DIV.getElementsByClassName('card-medium');
-        for (let i = 0; i < cards.length; i++) {
-            cards[i].style.backgroundImage = 'url(' + arrImageBack[imageChoose] + ')';
-        }
+/**/
+function chooseCountLevelAndCard() {
+    let countCardsInLevel = 0;
+    let countLevel = 0;
+    if (difficultChoose === 'low') {
+        countCardsInLevel = 5;
+        countLevel = 2;
+    } else if (difficultChoose === 'medium') {
+        countCardsInLevel = 6;
+        countLevel = 3;
+    } else if (difficultChoose === 'hard') {
+        countCardsInLevel = 8;
+        countLevel = 3;
+    }
+    return [countLevel, countCardsInLevel];
+}
 
-    } else if (difficult == 'hard') {
-        DIV.innerHTML = `<div class="first-level-hard">
-            <div class="card-hard" id = "0"></div>
-            <div class="card-hard" id = "1"></div>
-            <div class="card-hard" id = "2"></div>
-            <div class="card-hard" id = "3"></div>
-            <div class="card-hard" id = "4"></div>
-            <div class="card-hard" id = "5"></div>
-            <div class="card-hard" id = "6"></div>
-            <div class="card-hard" id = "7"></div>
-        </div>
-        <div class="second-level-hard">
-            <div class="card-hard" id = "8"></div>
-            <div class="card-hard" id = "9"></div>
-            <div class="card-hard" id = "10"></div>
-            <div class="card-hard" id = "11"></div>
-            <div class="card-hard" id = "12"></div>
-            <div class="card-hard" id = "13"></div>
-            <div class="card-hard" id = "14"></div>
-            <div class="card-hard" id = "15"></div>
-        </div>
-        <div class="thrid-level-hard">
-            <div class="card-hard" id = "16"></div>
-            <div class="card-hard" id = "17"></div>
-            <div class="card-hard" id = "18"></div>
-            <div class="card-hard" id = "19"></div>
-            <div class="card-hard" id = "20"></div>
-            <div class="card-hard" id = "21"></div>
-            <div class="card-hard" id = "22"></div>
-            <div class="card-hard" id = "23"></div>
-        </div>`;
-        let cards = DIV.getElementsByClassName('card-hard');
-        for (let i = 0; i < cards.length; i++) {
-            cards[i].style.backgroundImage = 'url(' + arrImageBack[imageChoose] + ')';
+/**/
+function insertCards(difficult) {
+    player_data.style.opacity = 0;
+    image_card.style.opacity = 0;
+    choose_difficult.style.opacity = 0;
+    let arrLevelAndCard = chooseCountLevelAndCard();
+    let countId = 0;
+    playground = document.createElement('div');
+    playground.className = difficult + "-game";
+    for (let i = 1; i < arrLevelAndCard[0] + 1; i++) {
+        let divLevel = document.createElement('div');
+        if (i === 1) {
+            playground.appendChild(divLevel);
+            divLevel.className = "first-level-" + difficult;
+        } else if (i === 2) {
+            playground.insertBefore(divLevel, playground.children[i - 1]);
+            divLevel.className = "second-level-" + difficult;
+        } else if (i === 3) {
+            playground.insertBefore(divLevel, playground.children[i - 1]);
+            divLevel.className = "thrid-level-" + difficult;
+        }
+        for (let j = 0; j < arrLevelAndCard[1]; j++) {
+            let divCards = document.createElement('div');
+            divCards.className = "card-" + difficult;
+            divCards.id = countId;
+            countId++;
+            divCards.style.backgroundImage = 'url(' + arrImageBack[imageChoose] + ')';
+            divLevel.appendChild(divCards);
         }
     }
-    FIELD_GAME.appendChild(DIV);
+    field_game.appendChild(playground);
 }
 
+/**/
 function chooseImage() {
-    IMAGE_CARD.onclick = (event) => {
+    image_card.onclick = (event) => {
         let image = event.target.classList;
         arrImageBack.forEach((item, i) => {
             if (item.indexOf(image) !== -1) {
@@ -168,8 +107,10 @@ function chooseImage() {
     };
 }
 
+/**/
 function chooseDifficult() {
-    CHOOSE_DIFFICULT.onclick = (event) => {
+    let arrDifficult = ["low", "medium", "hard"];
+    choose_difficult.onclick = (event) => {
         let difficult = event.target.classList;
         arrDifficult.forEach((item) => {
             if (item.indexOf(difficult) !== -1) {
@@ -179,85 +120,84 @@ function chooseDifficult() {
     };
 }
 
+/**/
 function removeSecondChildField() {
-    let chileds = FIELD_GAME.childNodes;
+    let chileds = field_game.childNodes;
     for (let i = 3; i < chileds.length; i++) {
-        FIELD_GAME.removeChild(chileds[i]);
+        field_game.removeChild(chileds[i]);
     }
     if (flagRestartGame !== 0) {
-        DIV.remove();
+        playground.remove();
     }
 }
 
+/**/
 function showChooseDifficult() {
+    const GAME_DIFFICULT = document.querySelector('.game-difficult');
     GAME_DIFFICULT.addEventListener('click', () => {
         if (difficultChooseShow) {
-            CHOOSE_DIFFICULT.style.opacity = 0;
-            PLAYER_DATA.style.opacity = 0;
-            DIV.style.opacity = 1;
+            choose_difficult.style.opacity = 0;
+            player_data.style.opacity = 0;
             difficultChooseShow = false;
         } else if (!difficultChooseShow) {
-            CHOOSE_DIFFICULT.style.opacity = 1;
-            PLAYER_DATA.style.opacity = 1;
-            DIV.style.opacity = 0.6;
+            choose_difficult.style.opacity = 1;
+            player_data.style.opacity = 1;
             difficultChooseShow = true;
+
         }
     })
 }
 
+/**/
 function showImageCard() {
+    const SKIRT_CARDS = document.querySelector('.skirt-cards');
     SKIRT_CARDS.addEventListener('click', () => {
         if (imageChooseShow) {
-            IMAGE_CARD.style.opacity = 0;
-            DIV.style.opacity = 1;
+            image_card.style.opacity = 0;
             imageChooseShow = false;
         } else if (!imageChooseShow) {
-            IMAGE_CARD.style.opacity = 1;
-            DIV.style.opacity = 0.6;
+            image_card.style.opacity = 1;
             imageChooseShow = true;
         }
     })
 }
 
+
 function game() {
-    fillArray();
+    let arrForPlayWithCards = fillArray();
     let predCard;
     let count = 0;
     let countWin = 0;
-    FIELD_GAME.onclick = (event) => {
+    field_game.onclick = (event) => {
         if (event.target.classList == "card-" + difficultChoose) {
             if (count === 0) {
                 predCard = event.target.id;
             }
             count++;
-
-
             if (count < 3) {
                 animate(function (timePassed) {
-                    event.target.style.width = 180 - timePassed / 2 + 'px';
-                }, 360);
+                    event.target.style.height = 190 - timePassed / 2 + 'px';
+                }, 380);
                 setTimeout(() => {
                     event.target.style.backgroundImage = 'url(' + arrForPlayWithCards[event.target.id] + ')';
                     animate(function (timePassed) {
-                        event.target.style.width = timePassed / 2 + 'px';
-                    }, 360);
-                }, 360);
+                        event.target.style.height = timePassed / 2 + 'px';
+                    }, 380);
+                }, 380);
             }
-
-
             if (count === 2 && arrForPlayWithCards[event.target.id] === arrForPlayWithCards[predCard] && predCard !== event.target.id) {
                 setTimeout(() => {
                     animate(function (timePassed) {
-                        event.target.style.opacity = 1 - timePassed / 360;
-                        document.getElementById(predCard).style.opacity = 1 - timePassed / 360;
-                    }, 360);
+                        event.target.style.opacity = 1 - timePassed / 380;
+                        document.getElementById(predCard).style.opacity = 1 - timePassed / 380;
+                    }, 380);
                     setTimeout(() => {
                         event.target.style.visibility = 'hidden';
                         document.getElementById(predCard).style.visibility = 'hidden';
                         count = 0;
-                    }, 360);
+                    }, 380);
 
-                }, 900);
+                }, 950);
                 countWin += 2;
 
             } else if (count === 2 && arrForPlayWithCards[event.target.id] !== arrForPlayWithCards[predCard]) {
@@ -265,40 +205,43 @@ function game() {
                     event.target.style.backgroundImage = 'url(' + arrImageBack[imageChoose] + ')';
                     document.getElementById(predCard).style.backgroundImage = 'url(' + arrImageBack[imageChoose] + ')';
                     count = 0;
-                }, 900);
+                }, 950);
             } else if (count === 2 && predCard === event.target.id) {
                 count = 0;
                 document.getElementById(predCard).style.backgroundImage = 'url(' + arrImageBack[imageChoose] + ')';
             }
         }
         if (countWin === arrForPlayWithCards.length) {
+            addToLocalStorage();
             countWin = 0;
             count = 0;
             win();
-            addToLocalStorage();
         }
     };
 }
 
+/**/
 function fillArray() {
-    arrForPlayWithCards = [];
+    let arrImageFront = ['image/bryant.png', 'image/curry.png', 'image/durant.png', 'image/lavin.png',
+        'image/Lebron.jpg', 'image/leonard.png', 'image/melo.png', 'image/pol.png', 'image/wade.jpg',
+        'image/Ronaldo.png', 'image/ozil.png', 'image/ibra.png'];
+    let arrForPlay = [];
     if (difficultChoose == "low") {
-        arrForPlayWithCards = arrImageFront.slice(0, 5);
-        arrForPlayWithCards = [...arrForPlayWithCards, ...arrForPlayWithCards];
+        arrForPlay = [...arrImageFront.slice(0, 5), ...arrImageFront.slice(0, 5)];
     } else if (difficultChoose == "medium") {
-        arrForPlayWithCards = arrImageFront.slice(0, 9);
-        arrForPlayWithCards = [...arrForPlayWithCards, ...arrForPlayWithCards];
+        arrForPlay = [...arrImageFront.slice(0, 9), ...arrImageFront.slice(0, 9)];
     } else if (difficultChoose == "hard") {
-        arrForPlayWithCards = arrImageFront.slice(0, 12);
-        arrForPlayWithCards = [...arrForPlayWithCards, ...arrForPlayWithCards];
+        arrForPlay = [...arrImageFront.slice(0, 12), ...arrImageFront.slice(0, 12)];
     }
-    return arrForPlayWithCards.sort(compareRandom);
+    return arrForPlay.sort(compareRandom);
 }
 
-function compareRandom(a, b) {
+/**/
+function compareRandom() {
     return Math.random() - 0.5;
 }
 
+/**/
 function addToLocalStorage() {
     for (let i = 0; i < 10; i++) {
         if (records[i] === 0) {
@@ -313,13 +256,15 @@ function addToLocalStorage() {
     let text_0 = document.getElementsByTagName("input")[0];
     let text_1 = document.getElementsByTagName("input")[1];
     let text_2 = document.getElementsByTagName("input")[2];
-    name = text_0.value;
-    lastName = text_1.value;
-    email = text_2.value;
-    localStorage.setItem(name + " " + lastName, readout);
+    let name = text_0.value;
+    let lastName = text_1.value;
+    let email = text_2.value;
+    localStorage.setItem(name + " " + lastName + " " + email, readout);
 }
 
+/**/
 function animate(draw, duration) {
+    let timePassed = 0;
     let start = performance.now();
     requestAnimationFrame(function animate(time) {
         timePassed = time - start;
@@ -332,20 +277,22 @@ function animate(draw, duration) {
     });
 }
 
+/**/
 function win() {
-    WIN = document.createElement('div');
+    const WIN = document.createElement('div');
     WIN.className = "win";
     WIN.innerText = "YOU WIN";
     setTimeout(() => {
         startStop();
         removeSecondChildField();
-        FIELD_GAME.appendChild(WIN);
+        field_game.appendChild(WIN);
         setTimeout(() => {
             removeSecondChildField();
             insertCards(difficultChoose);
         }, 2000);
     }, 800);
 }
+
 
 function clearClock() {
     clearTimeout(clocktimer);
