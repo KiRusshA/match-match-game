@@ -1,3 +1,4 @@
+//not connected
 class Timer {
     constructor() {
         this.readout = '';
