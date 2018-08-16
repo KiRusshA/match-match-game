@@ -1,10 +1,9 @@
-//not connected
 class Timer {
     constructor() {
         this.readout = '';
         this.base = 60;
-        this.hour = 1;
-        this.minute = 1;
+        this.h = 1;
+        this.m = 1;
         this.tm = 1;
         this.s = 0;
         this.ts = 0;
@@ -23,8 +22,8 @@ class Timer {
 
     clearClock() {
         clearTimeout(this.clocktimer);
-        this.hour = 1;
-        this.minute = 1;
+        this.h = 1;
+        this.m = 1;
         this.tm = 1;
         this.s = 0;
         this.ts = 0;
@@ -39,22 +38,22 @@ class Timer {
         if (t > 999) {
             this.s++;
         }
-        if (this.s >= (this.minute * this.base)) {
+        if (this.s >= (this.m * this.base)) {
             this.ts = 0;
-            this.minute++;
+            this.m++;
         } else {
             this.ts = parseInt((this.ms / 100) + this.s);
             if (this.ts >= this.base) {
-                this.ts = this.ts - ((this.minute - 1) * this.base);
+                this.ts = this.ts - ((this.m - 1) * this.base);
             }
         }
-        if (this.minute > (this.hour * this.base)) {
+        if (this.m > (this.h * this.base)) {
             this.tm = 1;
-            this.hour++;
+            this.h++;
         } else {
-            this.tm = parseInt((this.ms / 100) + this.minute);
+            this.tm = parseInt((this.ms / 100) + this.m);
             if (this.tm >= this.base) {
-                this.tm = this.tm - ((this.hour - 1) * this.base);
+                this.tm = this.tm - ((this.h - 1) * this.base);
             }
         }
         this.ms = Math.round(this.t / 10);
@@ -83,7 +82,7 @@ class Timer {
         } else {
             this.dm = '00';
         }
-        this.dh = this.hour - 1;
+        this.dh = this.h - 1;
         if (this.dh > 0) {
             if (this.dh < 10) {
                 this.dh = '0' + this.dh;

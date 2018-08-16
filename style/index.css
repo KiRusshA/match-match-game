@@ -12,37 +12,32 @@ body {
 
 .main-buttons {
     height: 5%;
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.main-buttons div{
-    width: 90%;
-    height: 100%;
-}
-
 .skirt-cards {
-    width: 11%;
+    width: 10%;
     height: 85%;
-    margin-left: -1%;
+    margin-left: 1%;
     border: 1px solid #5edb5a;
     border-radius: 5px;
     background-color: #5edb5a;
-    font-size: 100%;
+    font-size: 110%;
     font-weight: 700;
     color: white;
 }
 
 .game-difficult {
-    width: 11%;
+    width: 10%;
     height: 85%;
-    margin-left: 7px;
+    margin-left: 10px;
     border: 1px solid #5edb5a;
     border-radius: 5px;
     background-color: #5edb5a;
-    font-size: 100%;
+    font-size: 110%;
     font-weight: 700;
     color: white;
 }
@@ -50,10 +45,11 @@ body {
 .new-game {
     width: 10%;
     height: 85%;
+    margin-left: 67%;
     border: 1px solid #5edb5a;
     border-radius: 5px;
     background-color: #5edb5a;
-    font-size: 100%;
+    font-size: 110%;
     font-weight: 700;
     color: white;
 }
@@ -83,27 +79,10 @@ button:focus {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 10%;
-    margin-left: -1%;
+    width: 203px;
+    margin-left: -30px;
     border-radius: 5px;
     z-index: 99999999;
-}
-
-.image-card div:active{
-    box-shadow:
-            inset 0 0 100px hsla(0,0%,0%,.2),
-            inset 0px 1px 5px #999,
-            inset 0px 2px 0px #888,
-            inset 0px 3px 0px #777,
-            inset 0px 4px 0px #666,
-            inset 0px 5px 0px #555,
-            inset 0px 6px 0px #444,
-            inset 0px 7px 0px #333,
-            inset 0px 8px 7px #001135;
-}
-
-.choose-difficult div:active{
-    text-shadow: 1px 1px 2px black, 0 0 1em red;
 }
 
 .image-card > *:hover{
@@ -116,10 +95,10 @@ button:focus {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 10%;
+    width: 203px;
     margin-left: 10px;
     border-radius: 5px;
-    font-size: 110%;
+    font-size: 120%;
     color: white;
     z-index: 99999999;
 }
@@ -131,22 +110,22 @@ button:focus {
 .player-data {
     display: flex;
     flex-direction: column;
-    margin-left: 2%;
+    margin-left: 100px;
     z-index: 99999999;
 }
 
 .player-data b {
     margin: 5px 0 5px 0;
-    font-size: 100%;
-    color: white;
+    font-size: 120%;
+    color: black;
 }
 
 .player-data input {
-    width: 95%;
-    height: 40%;
+    width: 220px;
+    height: 25px;
     border: 1px solid black;
     border-radius: 4px;
-    font-size: 100%;
+    font-size: 120%;
     opacity: 0.8;
     background-color: white;
 }
@@ -155,8 +134,8 @@ button:focus {
     display: flex;
     flex-direction: column;
     height: 60%;
-    font-size: 125%;
-    color: #ebe8e9;
+    font-size: 150%;
+    margin-top: 40px;
 }
 
 .how-to-play {
@@ -199,9 +178,9 @@ button:focus {
 }
 
 .card-low{
-    background-color: #1720ff;
-    width: 140px;
-    height: 190px;
+    background-color: white;
+    width: 180px;
+    height: 250px;
     border-radius: 10px;
     margin: 0 40px 0 40px;
     background-repeat: no-repeat;
@@ -213,7 +192,7 @@ button:focus {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: -150px;
+    margin-top: -200px;
 }
 
 .second-level-medium{
@@ -231,9 +210,9 @@ button:focus {
     margin-top: 30px;
 }
 .card-medium{
-    background-color: #1720ff;
-    width: 140px;
-    height: 190px;
+    background-color: white;
+    width: 180px;
+    height: 250px;
     border-radius: 10px;
     margin: 0 30px 0 30px;
     background-position: center;
@@ -245,14 +224,14 @@ button:focus {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-top: -150px;
+    margin-top: -200px;
 }
 
 .second-level-hard{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 2%;
+    margin-top: 30px;
 
 }
 
@@ -260,12 +239,12 @@ button:focus {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 2%;
+    margin-top: 30px;
 }
 .card-hard{
-    background-color: #1720ff;
-    width: 140px;
-    height: 190px;
+    background-color: white;
+    width: 180px;
+    height: 250px;
     border-radius: 10px;
     background-position: center;
     background-size: contain;
@@ -276,6 +255,6 @@ button:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 300px;
+    font-size: 350px;
     color: #ffe4c0;
 }
